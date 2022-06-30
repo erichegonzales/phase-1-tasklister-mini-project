@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
   // your code here
+  // making an object of task
   class Task {
-    constructor(input, priorityLevel) {
+    constructor(input, priorityLevel, dueDate) {
       this.input = input
       this.priorityLevel = priorityLevel
+      this.dueDate = dueDate;
     }
 
     input() {
@@ -12,6 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     priorityLevel() {
       return this.priorityLevel
+    }
+
+    dueDate() {
+      return this.dueDate
     }
   }
   
@@ -26,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let priority = dropDown.options[dropDown.selectedIndex].value
     let date = document.getElementById('due-date-task').value
 
-    const task = new Task(taskInput, priority)
+    const task = new Task(taskInput, priority, date)
     listOfTasks.unshift(task)
 
     function sortTasks(obj1, obj2) {
@@ -58,18 +64,16 @@ document.addEventListener("DOMContentLoaded", () => {
         li.classList.add('low')
       }
 
-      li.append(document.createElement('br'), 'Due: ', date)
+      li.append(document.createElement('br'), 'Due: ', item.dueDate)
     
-      // // button to edit a task
-      // let editBtn = document.createElement('button')
-      // editBtn.innerText = "Edit"
-      // li.append(document.createElement('br'), editBtn)
+      // button to edit a task
+      let editBtn = document.createElement('button')
+      editBtn.innerText = "Edit"
+      li.append(document.createElement('br'), editBtn)
 
-      // editBtn.onclick = () => {
-      //     li.innerText = ""
-
-      //     date.innerText = ""
-      // }
+      editBtn.onclick = () => {
+          li.contentEditable = !li.isContentEditable;
+      }
 
       // button to delete a task
       let deleteBtn = document.createElement('button')
