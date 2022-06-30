@@ -2,33 +2,56 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   // your code here
-  class Task {
-    constructor(input, priorityLevel) {
-      this.input = input
-      this.priorityLevel = priorityLevel
-    }
-
-    input() {
-      return this.input;
-    }
-
-    priorityLevel() {
-      return this.priorityLevel
-    }
-  }
-
-  const listOfTasks = [];
 
   document.addEventListener('submit', function (event) {
     event.preventDefault();
 
+
+
+
+    class Task {
+      constructor(input, priorityLevel) {
+        this.input = input
+        this.priorityLevel = priorityLevel
+      }
+
+      input() {
+        return this.input;
+      }
+
+      priorityLevel() {
+        return this.priorityLevel
+      }
+      
+      toLi() {
+        let li = document.createElement('li')
+        return li;
+      }
+    }
+
     let taskList = document.getElementById('tasks')
     let taskInput = document.getElementById('new-task-description').value
-    let dropDown = document.getElementById('priority')
-    let priority = dropDown.options[dropDown.selectedIndex].value
+    const task = new Task(toLi(taskInput), priority)
+    // const li = task.toLi()
+    // let task = document.createElement('li')
 
-    const task = new Task(taskInput, priority)
-    listOfTasks.unshift(task)
+    const listOfTasks = [];
+
+    const dropDown = document.getElementById('priority')
+    let priority = dropDown.options[dropDown.selectedIndex].value
+    task.append(`${dropDown.options[dropDown.selectedIndex].value} priority: ${taskInput}`)
+
+
+    
+    // if (priority == 'high') {
+    //   task.style.color = 'red'
+    // } else if (priority == 'med') {
+    //   task.style.color = '#ffcc00'
+    // } else {
+    //   task.style.color = 'green'
+    // }
+
+
 
     function sortTasks(obj1, obj2) {
       if (obj1.priorityLevel < obj2.priorityLevel) {
@@ -40,41 +63,20 @@ document.addEventListener("DOMContentLoaded", () => {
       return 0
     }
 
-
-    listOfTasks.sort(sortTasks)
-    list.innerHTML = "";
-
-    listOfTasks.forEach((item) => {
-      let li = document.createElement('li');
-      li.innerText = item.input;
-
-      if (item.priorityLevel == '1-high') {
-        li.style.color = 'red'
-      } else if (item.priorityLevel == '2-med') {
-        li.style.color = '#ffcc00'
-      } else {
-        li.style.color = 'green'
-      }
-
-      list.appendChild(li);
-    })
-
-  
-    // task.append(`${dropDown.options[dropDown.selectedIndex].value} priority: ${taskInput}`)
+    listOfTasks.sort(sortTasks))
 
 
 
+    taskList.append(task)
+    document.getElementById('new-task-description').value = ""
 
-    // taskList.append(task)
-    // document.getElementById('new-task-description').value = ""
+    let btn = document.createElement('button')
+    btn.innerHTML = "x" // make button red
+    task.append(btn)
 
-    // let btn = document.createElement('button')
-    // btn.innerHTML = "x" // make button red
-    // task.append(btn)
-
-    // btn.onclick = function () {
-    //   task.remove(taskInput)
-    // }
+    btn.onclick = function () {
+      task.remove(taskInput)
+    }
   })
 });
 
