@@ -40,9 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     listOfTasks.sort(sortTasks)
-    list.innerHTML = "<h2>My To Dos:</h2>"
+    list.innerHTML = "<ul style='list-style: none'> <h2>My To Dos:</h2> </ul>"
+    const tasks = document.getElementsByTagName('ul')[0]
 
-
+    style = 'list-style: none'
     listOfTasks.forEach((item) => {
       let li = document.createElement('li');
       li.innerText = item.input;
@@ -58,41 +59,64 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       li.append(document.createElement('br'), 'Due: ', date)
+    
+      // // button to edit a task
+      // let editBtn = document.createElement('button')
+      // editBtn.innerText = "Edit"
+      // li.append(document.createElement('br'), editBtn)
 
-      let btn = document.createElement('button')
-      btn.innerHTML = "x"
-      li.append(btn)
+      // editBtn.onclick = () => {
+      //     li.innerText = ""
 
-      btn.onclick = function () {
+      //     date.innerText = ""
+      // }
+
+      // button to delete a task
+      let deleteBtn = document.createElement('button')
+      deleteBtn.innerText = "Delete"
+      li.append(deleteBtn)
+
+      deleteBtn.onclick = function () {
         li.remove()
 
         listOfTasks.splice(listOfTasks.indexOf(item), 1)
       }
-      list.appendChild(li);
+
+      tasks.appendChild(li);
     })
 
     const highTitle = document.createElement('h4')
     highTitle.textContent = "High Priority"
     const highPosition = document.querySelector('.high')
     if (highPosition !== null) {
-      list.insertBefore(highTitle, highPosition)
+      tasks.insertBefore(highTitle, highPosition)
     }
 
     const medTitle = document.createElement('h4')
     medTitle.textContent = "Medium Priority"
     const medPosition = document.querySelector('.med')
     if (medPosition !== null) {
-      list.insertBefore(medTitle, medPosition)
+      tasks.insertBefore(medTitle, medPosition)
     }
 
     const lowTitle = document.createElement('h4')
     lowTitle.textContent = "Low Priority"
     const lowPosition = document.querySelector('.low')
     if (lowPosition !== null) {
-      list.insertBefore(lowTitle, lowPosition)
+      tasks.insertBefore(lowTitle, lowPosition)
     }
 
     document.getElementById('new-task-description').value = ""
 
   })
 });
+
+/*
+ make edit button under the due date
+ only edit text? or due date?
+
+ change the content of the task (andor due date)
+
+ saves
+
+*/
