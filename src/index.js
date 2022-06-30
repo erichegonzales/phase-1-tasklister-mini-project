@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     listOfTasks.sort(sortTasks)
-    list.innerHTML = "";
+    list.innerHTML = "My To Dos";
 
     listOfTasks.forEach((item) => {
       let li = document.createElement('li');
@@ -56,27 +56,27 @@ document.addEventListener("DOMContentLoaded", () => {
         li.style.color = 'green'
       }
 
+      let btn = document.createElement('button')
+      btn.innerHTML = "x"
+      li.append(btn)
+
+      btn.onclick = function () {
+        li.remove()
+
+        listOfTasks.splice(listOfTasks.indexOf(item), 1)
+      }
+
       list.appendChild(li);
     })
 
-  
-    // task.append(`${dropDown.options[dropDown.selectedIndex].value} priority: ${taskInput}`)
+    document.getElementById('new-task-description').value = ""
 
-
-
-
-    // taskList.append(task)
-    // document.getElementById('new-task-description').value = ""
-
-    // let btn = document.createElement('button')
-    // btn.innerHTML = "x" // make button red
-    // task.append(btn)
-
-    // btn.onclick = function () {
-    //   task.remove(taskInput)
-    // }
   })
 });
+
+
+    // task.append(`${dropDown.options[dropDown.selectedIndex].value} priority: ${taskInput}`)
+    // taskList.append(task)
 
 // empty array
 // create an object function
