@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let taskInput = document.getElementById('new-task-description').value
     let dropDown = document.getElementById('priority')
     let priority = dropDown.options[dropDown.selectedIndex].value
+    let date = document.getElementById('due-date-task').value
 
     const task = new Task(taskInput, priority)
     listOfTasks.unshift(task)
@@ -45,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
     listOfTasks.forEach((item) => {
       let li = document.createElement('li');
       li.innerText = item.input;
-
       if (item.priorityLevel == '1-high') {
         li.style.color = 'red'
         li.classList.add('high')
@@ -56,6 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
         li.style.color = 'green'
         li.classList.add('low')
       }
+
+      li.append(document.createElement('br'), 'Due: ', date)
 
       let btn = document.createElement('button')
       btn.innerHTML = "x"
@@ -94,63 +96,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   })
 });
-
-
-    // task.append(`${dropDown.options[dropDown.selectedIndex].value} priority: ${taskInput}`)
-    // taskList.append(task)
-
-// empty array
-// create an object function
-
-
-// class Task {
-//   constructor(input, priorityLevel) {
-//     this.input = input
-//     this.priorityLevel = priorityLevel
-//   }
-
-//   input() {
-//     return this.input;
-//   }
-
-//   priorityLevel() {
-//     return this.priorityLevel
-//   }
-// }
-
-// const one = new Task("coffee", "1")
-// const two = new Task("asdf", "3")
-// const three = new Task("fdgad", "1")
-
-// const four = new Task("agfa", "2")
-// const five = new Task("aewdv", "3")
-// const six = new Task("thwrte", "2")
-
-
-
-// console.log(one)
-
-// const emptyArr = [];
-
-// emptyArr.unshift(one)
-// emptyArr.unshift(two)
-// emptyArr.unshift(three)
-// emptyArr.unshift(four)
-// emptyArr.unshift(five)
-// emptyArr.unshift(six)
-
-// console.log(emptyArr)
-
-// function sortLevel(obj1, obj2) {
-//   if (obj1.priorityLevel < obj2.priorityLevel) {
-//     return -1
-//   }
-//   if (obj1.priorityLevel > obj2.priorityLevel) {
-//     return 1
-//   }
-//   return 0
-// }
-
-// console.log(emptyArr.sort(sortLevel))
-
-

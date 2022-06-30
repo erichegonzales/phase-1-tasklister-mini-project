@@ -36,3 +36,6 @@ button {
   box-shadow: 2px 5px 5px #333;
 }
 
+br > * {
+  color: black;
+}
