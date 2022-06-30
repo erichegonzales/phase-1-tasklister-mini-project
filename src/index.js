@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     listOfTasks.sort(sortTasks)
-    list.innerHTML = "My To Dos";
+    list.innerHTML = "<h2>My To Dos:</h2> "
 
     listOfTasks.forEach((item) => {
       let li = document.createElement('li');
@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         li.remove()
 
         listOfTasks.splice(listOfTasks.indexOf(item), 1)
+        // KEEP TITLE FIX LATER
       }
 
       list.appendChild(li);
