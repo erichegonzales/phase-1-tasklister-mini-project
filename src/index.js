@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", () => {
   // your code here
   class Task {
@@ -16,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return this.priorityLevel
     }
   }
-
+  
   const listOfTasks = [];
 
   document.addEventListener('submit', function (event) {
@@ -40,9 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return 0
     }
 
-
     listOfTasks.sort(sortTasks)
-    list.innerHTML = "<h2>My To Dos:</h2> "
+    list.innerHTML = "<h2>My To Dos:</h2>"
+
 
     listOfTasks.forEach((item) => {
       let li = document.createElement('li');
@@ -50,10 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (item.priorityLevel == '1-high') {
         li.style.color = 'red'
+        li.classList.add('high')
       } else if (item.priorityLevel == '2-med') {
         li.style.color = '#ffcc00'
+        li.classList.add('med')
       } else {
         li.style.color = 'green'
+        li.classList.add('low')
       }
 
       let btn = document.createElement('button')
@@ -64,11 +65,30 @@ document.addEventListener("DOMContentLoaded", () => {
         li.remove()
 
         listOfTasks.splice(listOfTasks.indexOf(item), 1)
-        // KEEP TITLE FIX LATER
       }
-
       list.appendChild(li);
     })
+
+    const highTitle = document.createElement('h4')
+    highTitle.textContent = "High Priority"
+    const highPosition = document.querySelector('.high')
+    if (highPosition !== null) {
+      list.insertBefore(highTitle, highPosition)
+    }
+
+    const medTitle = document.createElement('h4')
+    medTitle.textContent = "Medium Priority"
+    const medPosition = document.querySelector('.med')
+    if (medPosition !== null) {
+      list.insertBefore(medTitle, medPosition)
+    }
+
+    const lowTitle = document.createElement('h4')
+    lowTitle.textContent = "Low Priority"
+    const lowPosition = document.querySelector('.low')
+    if (lowPosition !== null) {
+      list.insertBefore(lowTitle, lowPosition)
+    }
 
     document.getElementById('new-task-description').value = ""
 
